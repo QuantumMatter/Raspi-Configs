@@ -1,0 +1,16 @@
+#!/bin/sh
+echo "Installing VNC Server"
+sudo apt-get install tightvncserver
+echo "Configuring VNC Server"
+tightvncserver
+echo "Starting VNC Server On Port 1"
+vncserver :1 -geometry 1920x1080 -depth 24
+echo "Stopping X:0"
+service lightdm stop
+
+echo "Configuring VNC Server To Run At Boot"
+wget https://githubusercontent.com/QuantumMatter/Raspi-Configs/Master/vncboot
+chmod 755 vncboot
+mv vncboot /etc/init.d
+update-rc.d lightdm remove
+update-rc.d vncboot defaults
