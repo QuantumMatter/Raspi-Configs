@@ -1,0 +1,7 @@
+#!/bin/sh
+echo  "Installing Mono"
+sudo apt-get install mono-complete
+echo "Attempting To Compile test.cs"
+mcs test.cs
+echo "Attempting To Run test.exe"
+./test.exe

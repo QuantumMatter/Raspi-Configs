@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "Installing Jessie"
+sudo sed -i 's/wheezy/jessie/' /etc/apt/sources.list
+sudo sed -i 's/wheezy/jessie/' /etc/apt/sources.list.d/raspi.list 
+sudo apt-get update && sudo apt-get -y upgrade # answer 'y' to upcoming questions 
+sudo sudo apt-get -y dist-upgrade # answer 'y' to upcoming questions
+sudo init 6
+sudo apt-get -y autoremove
+sudo apt-get -y purge $(dpkg -l | awk '/^rc/ { print $2 }')
+sudo init 6
+echo "Installed Jessie"
